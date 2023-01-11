@@ -37,3 +37,7 @@ The project is based on the simulation of the SJF Preemptive scheduling algorith
 ## Note
 
 this is a basic simulation of the algorithm, and it can be enhanced as per your requirements.
+
+## Screenshot
+
+![App Screenshot](https://raw.githubusercontent.com/sajdoko/sjf-simulator/main/sjf-simulator.jpg)
