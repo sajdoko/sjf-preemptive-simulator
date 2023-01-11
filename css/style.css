@@ -1,0 +1,32 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-add-process {
+  max-width: 450px;
+  padding: 15px;
+}
+
+.form-add-process input[type="number"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-add-process,
+.results {
+  min-height: 40vh;
+}
+
+code {
+  color: black;
+}
