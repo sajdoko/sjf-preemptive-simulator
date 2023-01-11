@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SJF Preemptive Scheduler - Simulator</title>
+  <meta name="description" content="">
+  <meta name="author" content="Sajmir Doko">
+  <meta name="theme-color" content="#712cf9">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      background-color: #f5f5f5;
+    }
+
+    .form-signin {
+      max-width: 500px;
+      padding: 15px;
+    }
+
+    .form-signin .form-floating:focus-within {
+      z-index: 2;
+    }
+
+    .form-signin input[type="number"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <main class="form-signin m-auto">
+    <h1 class="mb-5 fw-normal">SJF Preemptive Scheduler</h1>
+
+    <form id="addProcessForm">
+      <div class="form-floating">
+        <input type="number" id="processId" name="processId" class="form-control" placeholder="Process ID" required>
+        <label for="processId">Process ID</label>
+      </div>
+      <div class="form-floating">
+        <input type="number" id="arrivalTime" name="arrivalTime" class="form-control" placeholder="Arrival Time" required>
+        <label for="arrivalTime">Arrival Time</label>
+      </div>
+      <div class="form-floating">
+        <input type="number" id="burstTime" name="burstTime" class="form-control" placeholder="Burst ID" required>
+        <label for="burstTime">Burst Time</label>
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Add Process</button>
+    </form>
+
+    <button id="runButton" type="button" class="w-100 btn btn-lg btn-success mt-4">Run Scheduler</button>
+
+    <hr>
+    <h2 class="my-4 fw-normal">Process List</h2>
+    <ul id="processList" class="list-group list-group-flush"></ul>
+    <hr>
+    <h2 class="my-4 fw-normal">Result</h2>
+    <ul id="result" class="list-group list-group-flush"></ul>
+  </main>
+
+
+  <script>
+    class Process {
+      constructor(id, arrivalTime, burstTime) {
+        this.id = id;
+        this.arrivalTime = arrivalTime;
+        this.burstTime = burstTime;
+        this.remainingTime = burstTime;
+      }
+    }
+
+    class SJFPreemptiveScheduler {
+      constructor() {
+        this.processes = [];
+      }
+
+      addProcess(id, arrivalTime, burstTime) {
+        this.processes.push(new Process(id, arrivalTime, burstTime));
+      }
+
+      run() {
+        this.processes.sort((a, b) => a.burstTime - b.burstTime);
+
+        let currentTime = 0;
+        let currentProcess = null;
+
+        const result = document.getElementById("result");
+
+        while (this.processes.length > 0) {
+          let nextProcess = null;
+          for (let i = 0; i < this.processes.length; i++) {
+            if (this.processes[i].arrivalTime <= currentTime) {
+              if (nextProcess === null) {
+                nextProcess = this.processes[i];
+              } else if (this.processes[i].burstTime < nextProcess.burstTime) {
+                nextProcess = this.processes[i];
+              }
+            }
+          }
+
+          if (nextProcess === null) {
+            currentTime++;
+            continue;
+          }
+
+          if (currentProcess !== null && currentProcess.remainingTime > 0) {
+            this.processes.push(currentProcess);
+          }
+
+          currentProcess = nextProcess;
+          this.processes.splice(this.processes.indexOf(nextProcess), 1);
+
+          currentProcess.remainingTime--;
+          currentTime++;
+          if (currentProcess.remainingTime === 0) {
+            const newResult = document.createElement("li");
+            newResult.className = "list-group-item";
+            newResult.innerHTML = `Process ${currentProcess.id} finished at time <span class="badge text-bg-secondary">${currentTime}</span>`;
+            result.appendChild(newResult);
+            currentProcess = null;
+          }
+        }
+      }
+    }
+
+    function addProcess(event) {
+      event.preventDefault();
+
+      const id = this.processId.value;
+      const arrivalTime = this.arrivalTime.value;
+      const burstTime = this.burstTime.value;
+
+      scheduler.addProcess(id, arrivalTime, burstTime);
+
+      const processList = document.getElementById("processList");
+      const newProcess = document.createElement("li");
+      newProcess.className = "list-group-item";
+      newProcess.innerHTML = `Process ${id} (Arrival Time: ${arrivalTime}, Burst Time: ${burstTime})`;
+      processList.appendChild(newProcess);
+
+      this.reset();
+    }
+
+    function runScheduler() {
+      scheduler.run();
+      document.getElementById("runButton").setAttribute("disabled", "true");
+    }
+
+    document.getElementById('addProcessForm').addEventListener('submit', addProcess);
+    document.getElementById('runButton').addEventListener('click', runScheduler);
+
+    const scheduler = new SJFPreemptiveScheduler();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
