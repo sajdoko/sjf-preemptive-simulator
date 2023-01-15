@@ -1,12 +1,12 @@
 # SJF Preemptive Scheduler Simulator
 
-This project is a simulation of the Shortest Job First (SJF) Preemptive scheduling algorithm. It allows you to add processes to a scheduler, and then simulate the execution of the processes using the SJF Preemptive algorithm. The scheduler prioritizes the execution of processes with the shortest burst time, and can interrupt a running process to give CPU time to another process with a shorter burst time.
+This project is a simulation of the Shortest Job First (SJF) preemptive or shortest-remaining-time-first scheduling algorithm. It allows you to add processes to a scheduler, and then simulate the execution of the processes using the Shortest Job First (SJF) algorithm. The scheduler prioritizes the execution of processes with the shortest burst time, and can interrupt a running process to give CPU time to another process with a shorter burst time.
 
 ## Features
 
 - Add new process with its ID, arrival time, and burst time
 - Run the scheduler and simulate the execution of the processes using the SJF Preemptive algorithm
-- Display the process list and the result of the scheduling
+- Display the process list and the result of the scheduling in the table
 
 ## Getting Started
 
@@ -40,4 +40,4 @@ this is a basic simulation of the algorithm, and it can be enhanced as per your 
 
 ## Screenshot
 
-![App Screenshot](https://raw.githubusercontent.com/sajdoko/sjf-simulator/master/sjf-simulator.png)
+![App Screenshot](https://raw.githubusercontent.com/sajdoko/sjf-preemptive-simulator/master/sjf-simulator.png)
