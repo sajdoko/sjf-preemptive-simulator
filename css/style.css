@@ -21,12 +21,3 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
-.form-add-process,
-.results {
-  min-height: 40vh;
-}
-
-code {
-  color: black;
-}

@@ -19,11 +19,13 @@
 <body class="h-100">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12 col-md-6 col-lg-6 form-add-process m-auto">
+      <div class="col-sm-12 col-md-5 form-add-process m-auto">
         <div class="text-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="72" height="57" fill="currentColor" class="bi bi-cpu-fill mb-4" viewBox="0 0 16 16">
+          <svg xmlns="http://www.w3.org/2000/svg" width="72" height="57" fill="currentColor" class="bi bi-cpu-fill mb-4"
+            viewBox="0 0 16 16">
             <path d="M6.5 6a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z" />
-            <path d="M5.5.5a.5.5 0 0 0-1 0V2A2.5 2.5 0 0 0 2 4.5H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2A2.5 2.5 0 0 0 4.5 14v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14a2.5 2.5 0 0 0 2.5-2.5h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14A2.5 2.5 0 0 0 11.5 2V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5zm1 4.5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3A1.5 1.5 0 0 1 6.5 5z" />
+            <path
+              d="M5.5.5a.5.5 0 0 0-1 0V2A2.5 2.5 0 0 0 2 4.5H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2v1H.5a.5.5 0 0 0 0 1H2A2.5 2.5 0 0 0 4.5 14v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14h1v1.5a.5.5 0 0 0 1 0V14a2.5 2.5 0 0 0 2.5-2.5h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14v-1h1.5a.5.5 0 0 0 0-1H14A2.5 2.5 0 0 0 11.5 2V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5a.5.5 0 0 0-1 0V2h-1V.5zm1 4.5h3A1.5 1.5 0 0 1 11 6.5v3A1.5 1.5 0 0 1 9.5 11h-3A1.5 1.5 0 0 1 5 9.5v-3A1.5 1.5 0 0 1 6.5 5z" />
           </svg>
           <h1 class="h3 mb-3 fw-normal">SJF Preemptive Scheduler</h1>
         </div>
@@ -33,14 +35,16 @@
             <label for="processId">Process ID</label>
           </div>
           <div class="form-floating">
-            <input type="number" id="arrivalTime" name="arrivalTime" class="form-control" placeholder="Arrival Time" required>
+            <input type="number" id="arrivalTime" name="arrivalTime" class="form-control" placeholder="Arrival Time"
+              required>
             <label for="arrivalTime">Arrival Time</label>
           </div>
           <div class="form-floating">
             <input type="number" id="burstTime" name="burstTime" class="form-control" placeholder="Burst ID" required>
             <label for="burstTime">Burst Time</label>
           </div>
-          <button type="submit" class="btn btn-outline-primary mt-2"><i class="bi bi-plus-circle"></i> Add Process</button>
+          <button type="submit" class="btn btn-outline-primary mt-2"><i class="bi bi-plus-circle"></i> Add
+            Process</button>
         </form>
 
         <div class="btn-group w-100 mt-4" role="group" aria-label="Buttons">
@@ -49,36 +53,27 @@
           <button id="resetButton" type="button" class="btn btn-outline-danger"><i class="bi bi-stars"></i>
             Reset</button>
         </div>
-
-        <hr>
-        <h2 class="my-4 display-6">Process List:</h2>
-        <ul id="processList" class="list-group list-group-flush"></ul>
       </div>
-      <div class="col-sm-12 col-md-6 col-lg-6">
-        <div class="results">
-          <h2 class="my-4 display-6">Result:</h2>
-          <ul id="result" class="list-group list-group-flush"></ul>
+      <div class="col-sm-12 col-md-7">
+        <div class="table-responsive">
+          <table id="resultsTable" class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Process</th>
+                <th scope="col">Arrival Time</th>
+                <th scope="col">Burst Time</th>
+                <th scope="col">Completion Time</th>
+                <th scope="col">Turn Around Time</th>
+                <th scope="col">Waiting Time</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
         </div>
-        <hr>
-        <div class="position-relative">
-          <div class="position-absolute top-0 end-0">
-            <code>
-              <h4>SJF Preemptive Algorithm</h4>
-              <ol class="fst-italic">
-                <li>Initialize an empty list of processes (queue)</li>
-                <li>While there are processes in the queue:</li>
-                <li>Sort the queue by burst time</li>
-                <li>Select the process with the shortest burst time from the front of the queue</li>
-                <li>Assign the CPU to the selected process</li>
-                <li>Decrement the burst time of the selected process</li>
-                <li>If the burst time of the selected process is 0, remove it from the queue</li>
-                <li>If a new process arrives during the execution of the selected process:</li>
-                <li>If the burst time of the new process is shorter than the remaining burst time of the current
-                  process, interrupt the current process and execute the new process</li>
-                <li>If the CPU is idle, go to step 2</li>
-              </ol>
-            </code>
-          </div>
+
+        <div class="results">
+          <ul id="result" class="list-group list-group-flush"></ul>
         </div>
 
       </div>
@@ -87,7 +82,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
-  </script>
+    </script>
 
   <script src="js/script.js"></script>
 </body>
